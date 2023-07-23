@@ -5,6 +5,7 @@ from functools import reduce
 import argparse
 import re
 import textwrap
+import json
 
 def iso_time_duration_to_seconds(duration_iso: str) -> int:
     pattern = 'PT((?P<hours>\d{1,2})H)?((?P<minutes>\d{1,2})M)?((?P<seconds>\d{1,2})S)?'
@@ -55,13 +56,21 @@ def search_youtube_videos():
             videoDuration = 'medium'
         else:
             videoDuration = 'long'
-    search_response = youtube.search().list(
-        q=search_query,
-        part="id,snippet",
-        type="video",
-        videoDuration=videoDuration,
-        maxResults=maxResults  # Adjust the number of results you want to retrieve
-    ).execute()
+    try:
+        search_response = youtube.search().list(
+            q=search_query,
+            part="id,snippet",
+            type="video",
+            videoDuration=videoDuration,
+            maxResults=maxResults  # Adjust the number of results you want to retrieve
+        ).execute()
+    except googleapiclient.errors.HttpError as e:
+        json_ = json.loads(e.args[1])
+        if json_['error']['message'] == "API key not valid. Please pass a valid API key.":
+            print("Please set a valid YouTube API key in youtube-video-length.py")
+            exit(1)
+        else:
+            raise
 
     for search_result in search_response.get("items", []):
         video_id = search_result["id"]["videoId"]
@@ -118,8 +127,10 @@ if __name__ == "__main__":
         else:
             args = parser.parse_args('-i PT14M7S -q 00:14:07'.split())
     else:
-        assert args.search_query
-        assert args.iso_8601 or args.seconds or args.list 
+        if not args.search_query:
+            parser.parse_args(['-h'])
+        if not (args.iso_8601 or args.seconds or args.list):
+            parser.parse_args(['-h'])
 
     target_duration_iso, search_query, maxResults = args.iso_8601, args.search_query, args.max_results
     target_video_duration_seconds = args.seconds
