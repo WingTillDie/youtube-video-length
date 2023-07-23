@@ -66,3 +66,7 @@ Use release.py to remove api key
 ## Disclaimer
 
 Please note that this script uses the YouTube Data API, and you need to abide by the API usage policies set by YouTube. It's recommended to refer to the [YouTube API Terms of Service](https://developers.google.com/youtube/terms/api-services-terms-of-service) and ensure compliance with their requirements.
+
+## License
+
+This script is provided as-is and is subject to the terms of the [LICENSE](LICENSE) file. Use it responsibly and at your own risk.
