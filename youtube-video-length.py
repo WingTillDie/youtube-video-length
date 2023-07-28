@@ -47,12 +47,13 @@ def search_youtube_videos():
     if is_list:
         videoDuration = 'any'
     else:
+        # Categorize YouTube video duration
         global target_video_duration_seconds
         if not target_video_duration_seconds:
             target_video_duration_seconds = iso_time_duration_to_seconds(target_duration_iso)
-        if target_video_duration_seconds < iso_time_duration_to_seconds('PT4M0S'):
+        if target_video_duration_seconds < iso_time_duration_to_seconds('PT4M'):
             videoDuration = 'short'
-        elif target_video_duration_seconds < iso_time_duration_to_seconds('PT20M0S'):
+        elif target_video_duration_seconds < iso_time_duration_to_seconds('PT20M'):
             videoDuration = 'medium'
         else:
             videoDuration = 'long'
@@ -65,6 +66,7 @@ def search_youtube_videos():
             maxResults=maxResults  # Adjust the number of results you want to retrieve
         ).execute()
     except googleapiclient.errors.HttpError as e:
+        # Error message for wrong API key
         json_ = json.loads(e.args[1])
         if json_['error']['message'] == "API key not valid. Please pass a valid API key.":
             print("Please set a valid YouTube API key in youtube-video-length.py")
@@ -119,6 +121,7 @@ if __name__ == "__main__":
     parser.add_argument('-t', '--test', action='store_true', help='Test the program')
 
     args = parser.parse_args()
+
 
     if args.test:
         # Real examples

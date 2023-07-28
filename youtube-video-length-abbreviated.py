@@ -16,10 +16,11 @@ def search_youtube_videos(target_duration_iso, search_query, maxResults=100):
     api_key = "YOUR_YOUTUBE_API_KEY"  # Replace with your YouTube API key
     youtube = googleapiclient.discovery.build("youtube", "v3", developerKey=api_key)
 
+    # Categorize YouTube video duration
     target_video_duration_seconds = iso_time_duration_to_seconds(target_duration_iso)
-    if target_video_duration_seconds < iso_time_duration_to_seconds('PT4M0S'):
+    if target_video_duration_seconds < iso_time_duration_to_seconds('PT4M'):
         videoDuration = 'short'
-    elif target_video_duration_seconds < iso_time_duration_to_seconds('PT20M0S'):
+    elif target_video_duration_seconds < iso_time_duration_to_seconds('PT20M'):
         videoDuration = 'medium'
     else:
         videoDuration = 'long'
