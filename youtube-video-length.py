@@ -8,19 +8,20 @@ import textwrap
 import json
 
 def iso_time_duration_to_seconds(duration_iso: str) -> int:
-    pattern = 'PT((?P<hours>\d{1,2})H)?((?P<minutes>\d{1,2})M)?((?P<seconds>\d{1,2})S)?'
+    #pattern = 'PT((?P<hours>\d{1,2})H)?((?P<minutes>\d{1,2})M)?((?P<seconds>\d{1,2})S)?'
+    pattern = 'P((?P<days>\d{1,2})D)?(T((?P<hours>\d{1,2})H)?((?P<minutes>\d{1,2})M)?((?P<seconds>\d{1,2})S)?)?'
     prog = re.compile(pattern)
     m = prog.fullmatch(duration_iso)
 
     def assertion_functional():
         def check_not_zero_padded(value):
             return not (value and len(value) == 2 and value[0] == '0')
-        assert all(check_not_zero_padded(m.group(part)) for part in ['hours', 'minutes', 'seconds']), [check_not_zero_padded(m.group(part)) for part in ['hours', 'minutes', 'seconds']]
+        assert all(check_not_zero_padded(m.group(part)) for part in ['days', 'hours', 'minutes', 'seconds']), [check_not_zero_padded(m.group(part)) for part in ['days', 'hours', 'minutes', 'seconds']]
     #assertion_functional()
 
     # Validate input duration_iso by assert not padded with 0
     def assertion():
-        for part in ['hours', 'minutes', 'seconds']:
+        for part in ['days', 'hours', 'minutes', 'seconds']:
             group_value = m.group(part)
             if group_value and len(group_value) == 2:
                 assert group_value[0] != '0', (part, group_value)
@@ -28,14 +29,18 @@ def iso_time_duration_to_seconds(duration_iso: str) -> int:
     
     def soft_assertion():
         failed_parts = []
-        for part in ['hours', 'minutes', 'seconds']:
+        for part in ['days', 'hours', 'minutes', 'seconds']:
             group_value = m.group(part)
             if group_value and len(group_value) == 2 and group_value[0] == '0':
                 failed_parts.append((part, group_value))
         assert not failed_parts, failed_parts
     soft_assertion()
 
-    video_duration_seconds = reduce(lambda l, r: int(l)*60+int(r), m.groupdict(default=0).values())
+    D, H, M, S = m.groupdict(default=0).values()
+    D, H = 0, int(H) + 24 * int(D)
+    video_duration_seconds = reduce(lambda l, r: int(l)*60+int(r), (H, M, S))
+
+    #video_duration_seconds = reduce(lambda l, r: int(l)*60+int(r), m.groupdict(default=0).values())
 
     assert type(video_duration_seconds) is int, type(video_duration_seconds)
     return video_duration_seconds
