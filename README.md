@@ -83,6 +83,15 @@ Video ID: Pcw8gDYEcGQ
 Video Duration (ISO): PT9M8S
 Video Duration (s): 548 seconds
 ```
+```
+$ ./youtube-video-length-w-key.py -q "cat funny" -i PT45M58S
+ERROR: No match with specified filter time. Try change -q, -m arguments, or use -l to list search results without filtering by time
+A search result without applying time filter:
+Video Title: 🤣 FUNNIEST Pet Bloopers | Dog and Cat Videos
+Video ID: 3TjDDrQ4Nig
+Video Duration (ISO): PT1H53S
+Video Duration (s): 3653 seconds
+```
 ## Development
 Use release.py to remove api key
 

@@ -79,6 +79,7 @@ def search_youtube_videos():
         else:
             raise
 
+    hit_count = 0
     for search_result in search_response.get("items", []):
         video_id = search_result["id"]["videoId"]
         video_title = search_result["snippet"]["title"]
@@ -87,10 +88,18 @@ def search_youtube_videos():
 
         #if is_list or duration_iso == target_duration_iso:
         if is_list or video_duration_seconds == target_video_duration_seconds:
-            print(f"Video Title: {video_title}")
-            print(f"Video ID: {video_id}")
-            print(f"Video Duration (ISO): {duration_iso}")
-            print(f"Video Duration (s): {video_duration_seconds} seconds\n")
+            print_result(video_title, video_id, duration_iso, video_duration_seconds)
+            hit_count += 1
+    if hit_count == 0:
+        print("ERROR: No match with specified filter time. Try change -q, -m arguments, or use -l to list search results without filtering by time")
+        print("A search result without applying time filter:")
+        print_result(video_title, video_id, duration_iso, video_duration_seconds)
+
+def print_result(video_title, video_id, duration_iso, video_duration_seconds):
+    print(f"Video Title: {video_title}")
+    print(f"Video ID: {video_id}")
+    print(f"Video Duration (ISO): {duration_iso}")
+    print(f"Video Duration (s): {video_duration_seconds} seconds\n")
 
 def get_video_duration(video_id, youtube):
     video_response = youtube.videos().list(
