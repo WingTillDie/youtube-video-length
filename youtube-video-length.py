@@ -6,6 +6,7 @@ import argparse
 import re
 import textwrap
 import json
+import shlex
 
 def iso_time_duration_to_seconds(duration_iso: str) -> int:
     #pattern = 'PT((?P<hours>\d{1,2})H)?((?P<minutes>\d{1,2})M)?((?P<seconds>\d{1,2})S)?'
@@ -140,9 +141,9 @@ if __name__ == "__main__":
     if args.test:
         # Real examples
         if args.list:
-            args = parser.parse_args('-l -q 00:14:07'.split())
+            args = parser.parse_args(shlex.split('-q "cat funny" -l -m 5'))
         else:
-            args = parser.parse_args('-i PT14M7S -q 00:14:07'.split())
+            args = parser.parse_args(shlex.split('-q "cat funny" -i PT5S'))
     else:
         if not args.search_query:
             parser.parse_args(['-h'])
