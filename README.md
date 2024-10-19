@@ -21,7 +21,7 @@ Searches YouTube video with specified duration by YouTube Data API
 
 3. Run the script: Execute the script with the desired command-line arguments. For example:
 ```
-python youtube-video-length.py -i PT14M7S -q "00:14:07"
+./youtube-video-length-w-key.py -q "cat funny" -i PT5S
 ```
 
 4. Output: The script will display YouTube video titles, IDs, ISO duration, and duration in seconds for videos that match the specified criteria.
@@ -45,35 +45,45 @@ flowchart TD
 An example application of this program is to solve the password game with rule 24, as described on [Neal.fun](https://neal.fun/password-game/).
 
 ## Example output
-example-output.txt:
 ```txt
-$ ./youtube-video-length-w-key.py -t
-Video Title: جھوٹ پکڑا گیا9مئی کا غبارہ پھٹ گیا؟کرش خان پھر ناکام، یتیموں کی نئی پارٹی؟ڈیتھ سیل میں قیدیوں پر ظلم
-Video ID: t-m5hWMq0mw
-Video Duration (ISO): PT14M7S
-Video Duration (s): 847 seconds
+$ ./youtube-video-length-w-key.py -q "cat funny" -i PT5S
+Video Title: cute cat funny dance video 😹 || #funny #funnydance #ytshort #shortfeed #youtubeshorts  #shortviral
+Video ID: gSI3nr5qwXs
+Video Duration (ISO): PT5S
+Video Duration (s): 5 seconds
 
-Video Title: 1 Billion Tonnes and counting, Canada Nickel Company Expands Land Package (TSX.V:CNC)
-Video ID: a-EEvU8eIe8
-Video Duration (ISO): PT14M7S
-Video Duration (s): 847 seconds
-
-Video Title: ن لیگ کافوج کیخلاف گندا کھیل 100راہنما فارغ کرنیکا منصوبہ؟ فوجی عدالتوں کا مقدمہ اہم ہوگیا
-Video ID: IOeyBMewQSc
-Video Duration (ISO): PT14M7S
-Video Duration (s): 847 seconds
-
-Video Title: لڑائی بڑھ گئی | چیف جسٹس بندیال، آرمی چیف آمنے سامنے | DGISPR کی دھمکیاں | چیف جسٹس ڈٹ گئے
-Video ID: JiHBu5hh-qg
-Video Duration (ISO): PT14M7S
-Video Duration (s): 847 seconds
-
-Video Title: چودہ جماعتیں87 وزیر لیکن پاکستان ہارگیا | آرمی چیف سےایک سوال؟کرش خان پراجیکٹ واشنگٹن میں بھی ناکام؟
-Video ID: ovn3HpHuEDo
-Video Duration (ISO): PT14M7S
-Video Duration (s): 847 seconds
+Video Title: dancing cat🐱funny dance #shorts ytshorts #viralshorts
+Video ID: dAKBqZrkuhc
+Video Duration (ISO): PT5S
+Video Duration (s): 5 seconds
 ```
+```txt
+$ ./youtube-video-length-w-key.py -q "cat funny" -l -m 5
+Video Title: Funny Cat Fails | Funny Cat Compilation - FailArmy
+Video ID: DHfRfU3XUEo
+Video Duration (ISO): PT8M14S
+Video Duration (s): 494 seconds
 
+Video Title: Funniest Cats and Dogs 🐶🐱 | Funny Animal Videos #35
+Video ID: tAcjl9S9exw
+Video Duration (ISO): PT12M35S
+Video Duration (s): 755 seconds
+
+Video Title: 😹 FUNNIEST Cats Ever | Hilarious Cat Videos
+Video ID: O4MV5BRv-ps
+Video Duration (ISO): PT1H26S
+Video Duration (s): 3626 seconds
+
+Video Title: #75 Funny Cat videos 🐱🐱 #meowing #memes #cute
+Video ID: ORTR9Jz-dCc
+Video Duration (ISO): PT59S
+Video Duration (s): 59 seconds
+
+Video Title: UNEXPLAINABLE Behaviour of Orange Cats 🍊😹 Funny Cat Videos 2024
+Video ID: Pcw8gDYEcGQ
+Video Duration (ISO): PT9M8S
+Video Duration (s): 548 seconds
+```
 ## Development
 Use release.py to remove api key
 
