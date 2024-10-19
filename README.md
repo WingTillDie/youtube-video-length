@@ -92,6 +92,18 @@ Video ID: 3TjDDrQ4Nig
 Video Duration (ISO): PT1H53S
 Video Duration (s): 3653 seconds
 ```
+
+## Entity Relationship Diagram
+```mermaid
+erDiagram
+    "All YouTube Videos" ||..o| "YouTube Videos with Matched Length" : "contains"
+    "All YouTube Videos" ||..o| "YouTube Videos with Specified Search String" : "contains"
+    "YouTube Videos with Specified Search String" ||..o| "YouTube Videos with Specified Search String, Top 100 Results": "contains"
+    "YouTube Videos with Specified Search String, Top 100 Results" ||..o| "YouTube Videos with Specified Search String, Top 100 Results, with Match Length" : "contains"
+    "YouTube Videos with Specified Search String, Top 100 Results" ||..o| "YouTube Videos with Specified Search String, Top 100 Results, with Not Match Length" : "contains"
+    "YouTube Videos with Matched Length" ||..o| "YouTube Videos with Specified Search String, Top 100 Results, with Match Length" : "contains"
+```
+
 ## Development
 Use release.py to remove api key
 
