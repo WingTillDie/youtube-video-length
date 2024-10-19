@@ -27,10 +27,11 @@ Searches YouTube video with specified duration by YouTube Data API
 4. Output: The script will display YouTube video titles, IDs, ISO duration, and duration in seconds for videos that match the specified criteria.
 
 ```mermaid
----
-title: Command Arguments
----
 flowchart TD
+    Query[Search String: cat funny<br>--q #34;cat funny#34;]
+    Top[Top 100 Search Results<br>--m 100]
+    Query --> Top
+    Top --> Is_Filter
     Is_Filter{Enable Filter by Video Length?}
     Is_Filter -->|No| list[/--list/]
     Is_Filter -->|Yes| Time_Format
