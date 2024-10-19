@@ -11,13 +11,11 @@ Searches YouTube video with specified duration by YouTube Data API
 1. Obtain a YouTube API key: Replace `"YOUR_YOUTUBE_API_KEY"` in the script with your actual YouTube API key. If you don't have one, follow the instructions to create a new API key on the [Google Developer Console](https://console.developers.google.com/).
 
 2. Command-line arguments:
-
+   - `-q` or `--search-query`: Provide your desired search query (e.g., "cat funny").
+   - `-m` or `--max-results`: Top m search results. Default: 100
    - `-i` or `--iso-8601`: Specify the target duration in ISO 8601 time format (e.g., PT14M7S).
    - `-s` or `--seconds`: Specify the target duration in seconds (e.g., 411).
    - `-l` or `--list`: Use this option for a list of videos without filtering by duration.
-   - `-q` or `--search-query`: Provide your desired search query (e.g., "00:14:07").
-
-   Note: You can use the `-t` or `--test` flag to test the program with example inputs.
 
 3. Run the script: Execute the script with the desired command-line arguments. For example:
 ```
@@ -28,8 +26,8 @@ Searches YouTube video with specified duration by YouTube Data API
 
 ```mermaid
 flowchart TD
-    Query[Search String: cat funny<br>--q #34;cat funny#34;]
-    Top[Top 100 Search Results<br>--m 100]
+    Query[Search String: cat funny<br>-q #34;cat funny#34;]
+    Top[Top 100 Search Results<br>-m 100]
     Query --> Top
     Top --> Is_Filter
     Is_Filter{Enable Filter by Video Length?}
