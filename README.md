@@ -26,6 +26,20 @@ python youtube-video-length.py -i PT14M7S -q "00:14:07"
 
 4. Output: The script will display YouTube video titles, IDs, ISO duration, and duration in seconds for videos that match the specified criteria.
 
+```mermaid
+---
+title: Command Arguments
+---
+flowchart TD
+    Is_Filter{Enable Filter by Video Length?}
+    Is_Filter -->|No| list[/--list/]
+    Is_Filter -->|Yes| Time_Format
+    Time_Format{Filter Time Format}
+    Time_Format -->|seconds| Seconds
+    Seconds[/--seconds/]
+    Time_Format -->|ISO 8601| ISO_8601
+    ISO_8601[/--iso-8601/]
+```
 ## Example Application
 
 An example application of this program is to solve the password game with rule 24, as described on [Neal.fun](https://neal.fun/password-game/).
