@@ -8,7 +8,7 @@ Searches YouTube video with specified duration by YouTube Data API
 
 ## Usage
 
-1. Obtain a YouTube API key: Replace `"YOUR_YOUTUBE_API_KEY"` in the script with your actual YouTube API key. If you don't have one, follow the instructions to create a new API key on the [Google Developer Console](https://console.developers.google.com/).
+1. Obtain a YouTube API key: Replace `"YOUR_YOUTUBE_API_KEY"` in the script `youtube-video-length.py` with your actual YouTube API key. If you don't have one, follow the instructions to create a new API key on the [Google Developer Console](https://console.developers.google.com/).
 
 2. Command-line arguments:
    - `-q` or `--search-query`: Provide your desired search query (e.g., "cat funny").
@@ -19,7 +19,7 @@ Searches YouTube video with specified duration by YouTube Data API
 
 3. Run the script: Execute the script with the desired command-line arguments. For example:
 ```
-./youtube-video-length-w-key.py -q "cat funny" -i PT5S
+python3 youtube-video-length.py -q "cat funny" -i PT5S
 ```
 
 4. Output: The script will display YouTube video titles, IDs, ISO duration, and duration in seconds for videos that match the specified criteria.
@@ -45,7 +45,7 @@ An example application of this program is to solve the password game with rule 2
 
 ## Example output
 ```txt
-$ ./youtube-video-length-w-key.py -q "cat funny" -i PT5S
+$ python3 youtube-video-length.py -q "cat funny" -i PT5S
 Video Title: cute cat funny dance video 😹 || #funny #funnydance #ytshort #shortfeed #youtubeshorts  #shortviral
 Video ID: gSI3nr5qwXs
 Video Duration (ISO): PT5S
@@ -57,7 +57,7 @@ Video Duration (ISO): PT5S
 Video Duration (s): 5 seconds
 ```
 ```txt
-$ ./youtube-video-length-w-key.py -q "cat funny" -l -m 5
+$ python3 youtube-video-length.py -q "cat funny" -l -m 5
 Video Title: Funny Cat Fails | Funny Cat Compilation - FailArmy
 Video ID: DHfRfU3XUEo
 Video Duration (ISO): PT8M14S
@@ -84,7 +84,7 @@ Video Duration (ISO): PT9M8S
 Video Duration (s): 548 seconds
 ```
 ```
-$ ./youtube-video-length-w-key.py -q "cat funny" -i PT45M58S
+$ python3 youtube-video-length.py -q "cat funny" -i PT45M58S
 ERROR: No match with specified filter time. Try change -q, -m arguments, or use -l to list search results without filtering by time
 A search result without applying time filter:
 Video Title: 🤣 FUNNIEST Pet Bloopers | Dog and Cat Videos
